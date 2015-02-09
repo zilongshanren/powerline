@@ -23,21 +23,21 @@
 
 (require 'cl-lib)
 
-(defface powerline-active1 '((t (:background "grey22" :inherit mode-line)))
+(defface powerline-active1 '((t (:background "grey22" :foreground "white" :inherit mode-line)))
   "Powerline face 1."
   :group 'powerline)
 
-(defface powerline-active2 '((t (:background "grey40" :inherit mode-line)))
+(defface powerline-active2 '((t (:background "grey40" :foreground "white" :inherit mode-line)))
   "Powerline face 2."
   :group 'powerline)
 
 (defface powerline-inactive1
-  '((t (:background "grey11" :inherit mode-line-inactive)))
+  '((t (:background "grey22" :foreground "white" :inherit mode-line-inactive)))
   "Powerline face 1."
   :group 'powerline)
 
 (defface powerline-inactive2
-  '((t (:background "grey20" :inherit mode-line-inactive)))
+  '((t (:background "grey40" :foreground "white" :inherit mode-line-inactive)))
   "Powerline face 2."
   :group 'powerline)
 
@@ -94,6 +94,8 @@ This is needed to make sure that text is properly aligned."
   "Display the buffer size suffix."
   :group 'powerline
   :type 'boolean)
+
+(defvar powerline-selected-window nil)
 
 (defun pl/create-or-get-cache ()
   "Return a frame-local hash table that acts as a memoization cache for powerline. Create one if the frame doesn't have one yet."
@@ -425,7 +427,7 @@ static char * %s[] = {
 
 ;;;###autoload (autoload 'powerline-buffer-id "powerline")
 (defpowerline powerline-buffer-id
-  (format-mode-line mode-line-buffer-identification))
+  (s-trim (format-mode-line mode-line-buffer-identification)))
 
 ;;;###autoload (autoload 'powerline-process "powerline")
 (defpowerline powerline-process

@@ -22,6 +22,9 @@
 (defun powerline-default-theme ()
   "Setup the default mode-line."
   (interactive)
+  (set-face-attribute 'mode-line nil
+                    :background "#f9b593"
+                    :box nil)
   (setq-default mode-line-format
                 '("%e"
                   (:eval
@@ -36,8 +39,8 @@
                                                            powerline-default-separator
                                                            (cdr powerline-default-separator-dir))))
                           (lhs (list (powerline-raw "%*" nil 'l)
-                                     (powerline-buffer-size nil 'l)
-                                     (powerline-raw mode-line-mule-info nil 'l)
+                                     ;; (powerline-buffer-size nil 'l)
+                                     ;; (powerline-raw mode-line-mule-info nil 'l)
                                      (powerline-buffer-id nil 'l)
                                      (when (and (boundp 'which-func-mode) which-func-mode)
                                        (powerline-raw which-func-format nil 'l))
@@ -60,7 +63,8 @@
                                      (funcall separator-right face1 mode-line)
                                      (powerline-raw " ")
                                      (powerline-raw "%6p" nil 'r)
-                                     (powerline-hud face2 face1))))
+                                     ;; (powerline-hud face2 face1)
+                                     )))
                      (concat (powerline-render lhs)
                              (powerline-fill face2 (powerline-width rhs))
                              (powerline-render rhs)))))))
